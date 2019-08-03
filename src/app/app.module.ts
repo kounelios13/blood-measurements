@@ -16,13 +16,21 @@ import {
   MatFormField,
   MatFormFieldModule,
   MatInputModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule,
+  MatOptionModule
 } from "@angular/material";
 import { MeasurementComponent } from "./components/measurement/measurement.component";
 import { FormsModule } from "@angular/forms";
+import { HistoryComponent } from "./components/history/history.component";
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, MeasurementComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    MeasurementComponent,
+    HistoryComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,7 +45,9 @@ import { FormsModule } from "@angular/forms";
     MatInputModule,
     MatFormFieldModule,
     MatListModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule,
+    MatOptionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

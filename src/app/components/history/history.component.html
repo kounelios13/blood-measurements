@@ -1,0 +1,40 @@
+<mat-form-field class="full-width">
+  <mat-label>Select year</mat-label>
+  <mat-select (selectionChange)="onYearChange($event)">
+    <mat-option *ngFor="let y of years" value={{y}}>See months for year {{y}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="full-width" *ngIf="selectedYear">
+  <mat-label>Select month</mat-label>
+  <mat-select (selectionChange)="onMonthChange($event)">
+    <mat-option *ngFor="let m of months" value={{m}}>See days {{m}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field class="full-width" *ngIf="selectedMonth">
+  <mat-label>Select days</mat-label>
+  <mat-select (selectionChange)="onDayChange($event)">
+    <mat-option *ngFor="let d of days" value={{d}}>Data for day :{{d}}</mat-option>
+  </mat-select>
+</mat-form-field>
+<ng-container *ngIf="filteredData">
+  <div *ngFor="let m of filteredData">
+    <mat-card style="width: 100%">
+      <form #f="ngForm">
+        <mat-form-field class="full-width">
+          <input type="number" matInput placeholder="Systolic" [(ngModel)]="m.systolic" name='sys'>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="number" matInput placeholder="Diastolic" [(ngModel)]="m.diastolic" name='dia'>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="number" matInput placeholder="Pulses" [(ngModel)]="m.pulses" name='pulses'>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="text" matInput placeholder="Date" [value]="m.date" name='date'>
+        </mat-form-field>
+      </form>
+    </mat-card>
+  </div>
+</ng-container>

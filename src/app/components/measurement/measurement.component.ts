@@ -17,14 +17,11 @@ export class MeasurementComponent implements OnInit {
   };
   constructor(private _snackBar: MatSnackBar) {}
 
-  selectedDate: any;
   ngOnInit() {}
   submitMeasurement(e) {
     console.log("submitting new measurement", this.measurement);
-    console.log(this.selectedDate);
     e.preventDefault();
     this.measurement.id = this.uuidv4();
-    // this.measurement.date = new Date();
     let data = JSON.parse(localStorage.getItem("data")) || [];
     data.push(this.measurement);
     localStorage.setItem("data", JSON.stringify(data));
