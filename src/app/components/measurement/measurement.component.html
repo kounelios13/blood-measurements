@@ -1,0 +1,28 @@
+<mat-card>
+  <form (ngSubmit)="submitMeasurement($event)" #f="ngForm">
+    <mat-form-field class="full-width">
+      <input type="number" matInput placeholder="Systolic" [(ngModel)]="measurement.systolic" name='sys'>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="number" matInput placeholder="Diastolic" [(ngModel)]="measurement.diastolic" name='dia'>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="number" matInput placeholder="Pulses" [(ngModel)]="measurement.pulses" name='pulses'>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input type="date" matInput placeholder="Date" [(ngModel)]="measurement.date" name='date'>
+    </mat-form-field>
+
+    <button mat-button type="submit">Add</button>
+  </form>
+  <!-- <form class="example-form">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Favorite food" value="Sushi">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+  </form> -->
+
+</mat-card>
