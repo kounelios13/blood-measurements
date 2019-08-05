@@ -1,18 +1,18 @@
 <mat-form-field class="full-width">
   <mat-label>Select year</mat-label>
-  <mat-select (selectionChange)="onYearChange($event)">
-    <mat-option *ngFor="let y of years" value={{y}}>See months for year {{y}}</mat-option>
+  <mat-select (selectionChange)="onYearChange($event)" [(value)]="selectedYear">
+    <mat-option *ngFor="let y of years" value={{y}}>{{y}}</mat-option>
   </mat-select>
 </mat-form-field>
 
 <mat-form-field class="full-width" *ngIf="selectedYear">
   <mat-label>Select month</mat-label>
   <mat-select (selectionChange)="onMonthChange($event)">
-    <mat-option *ngFor="let m of months" value={{m}}>See days {{m}}</mat-option>
+    <mat-option *ngFor="let m of months" value={{m}}>{{getMonthName(m-1)}}</mat-option>
   </mat-select>
 </mat-form-field>
 
-<mat-form-field class="full-width" *ngIf="selectedMonth">
+<!-- <mat-form-field class="full-width" *ngIf="selectedMonth">
   <mat-label>Select days</mat-label>
   <mat-select (selectionChange)="onDayChange($event)">
     <mat-option *ngFor="let d of days" value={{d}}>Data for day :{{d}}</mat-option>
@@ -37,4 +37,5 @@
       </form>
     </mat-card>
   </div>
-</ng-container>
+</ng-container> -->
+<chart [type]="chartType" [data]="data" [options]="options" #mainChart></chart>
