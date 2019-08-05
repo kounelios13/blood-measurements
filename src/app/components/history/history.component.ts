@@ -18,7 +18,7 @@ export class HistoryComponent implements OnInit {
   selectedYear: number;
   selectedMonth: number;
   selectedDay: number;
-  chartType = "line";
+  chartType = "bar";
   data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -74,6 +74,40 @@ export class HistoryComponent implements OnInit {
     days = Array.from(new Set(days)).sort((a, b) => a - b);
     // This returns a new String object for every item in `days`
     this.days = days.map(String);
+    // @TODO
+    // we need 3 datasets
+    // 1 for average systolic pressure per day
+    // 1 for avg diastolic pressure per day
+    // 1 for avg num of pulses for each day
+
+    const sysDataSet = {
+      label: "Average systolic per day",
+      data: [],
+      backgroundColor: "yellow"
+    };
+    const diaDataSet = {
+      label: "Average dia per day",
+      data: [],
+      backgroundColor: "red"
+    };
+
+    const pulseDataSet = {
+      label: "Average pulses per day",
+      data: [],
+      backgroundColor: "orange"
+    };
+    days.forEach(d => {
+      console.log(`Day ${d}`);
+      const data = this.getMeasurementPerDate(
+        this.selectedYear,
+        this.selectedMonth,
+        d
+      );
+      console.table(data);
+      sysDataSet.data.push(this.measurementService.calculateAvgSys(data));
+      diaDataSet.data.push(this.measurementService.calculateAvgDia(data));
+      pulseDataSet.data.push(this.measurementService.calculateAvgPulses(data));
+    });
     this.data.datasets[0].label = `Total measurements`;
     this.data.labels = days.map(day => `Day : ${day}`);
 
@@ -96,7 +130,8 @@ export class HistoryComponent implements OnInit {
       console.log({ results });
       return results.length;
     });
-    this.data.datasets[0].data = measurements;
+    this.data.datasets = [sysDataSet, diaDataSet, pulseDataSet];
+    // this.data.datasets[0].data = measurements;
     this.mainChart.chart.update();
     // console.log({ month: this.selectedMonth, year: this.selectedYear, $event });
     // const days = this.measurements

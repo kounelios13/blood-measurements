@@ -48,6 +48,15 @@ export class MeasurementService {
       ) / data.length
     );
   }
+
+  public calculateAvgPulses(data: Measurement[]) {
+    return (
+      data.reduce(
+        (accum, measurement) => accum + (measurement.pulses as number),
+        0
+      ) / data.length
+    );
+  }
   private getUniqueItems(data: any[]) {
     return Array.from(new Set(data));
   }
