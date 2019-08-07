@@ -1,0 +1,23 @@
+.container {
+  display: grid;
+  //   justify-items: stretch;
+  //   justify-content: stretch;
+  //   column-count: 2;
+  //   column-gap: 7px;
+  grid-template-columns: repeat(4, 2fr);
+  grid-template-rows: 80px 80px;
+  //   grid-gap: 15px 10px;
+  //   object-fit: fill;
+
+}
+
+.chart-item {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media all and (max-width :600px) {
+  .chart-item {
+    grid-column: span 4;
+  }
+}

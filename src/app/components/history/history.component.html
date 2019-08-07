@@ -7,11 +7,34 @@
 
 <mat-form-field class="full-width" *ngIf="selectedYear">
   <mat-label>Select month</mat-label>
-  <mat-select (selectionChange)="onMonthChange($event)">
+  <mat-select (selectionChange)="onMonthChange($event)" value="{{getMonthName(selectedMonth-1)}}">
     <mat-option *ngFor="let m of months" value={{m}}>{{getMonthName(m-1)}}</mat-option>
   </mat-select>
 </mat-form-field>
+<!-- <mat-grid-list cols="2" gutter="10px">
+  <mat-grid-tile style="border:2px solid;padding:10px">
 
+  </mat-grid-tile>
+  <mat-grid-tile>
+
+  </mat-grid-tile>
+  <mat-grid-tile>3</mat-grid-tile>
+  <mat-grid-tile>4</mat-grid-tile>
+</mat-grid-list> -->
+<div class="container">
+  <div class="chart-item">
+    <chart [type]="chartType" [data]="data" [options]="options" #mainChart width="100%"></chart>
+  </div>
+  <div class="chart-item">
+    <chart width="100%" [type]="chartType" [data]="sysChartData" [options]="options" #sysChart></chart>
+  </div>
+  <div class="chart-item">
+    <chart [type]="chartType" [data]="diaChartData" [options]="options" #diaChart></chart>
+  </div>
+  <div class="chart-item">
+    <chart [type]="chartType" [data]="pulsesChartData" [options]="options" #pulsesChart></chart>
+  </div>
+</div>
 <!-- <mat-form-field class="full-width" *ngIf="selectedMonth">
   <mat-label>Select days</mat-label>
   <mat-select (selectionChange)="onDayChange($event)">
@@ -38,6 +61,12 @@
     </mat-card>
   </div>
 </ng-container> -->
-<chart [type]="chartType" [data]="data" [options]="options" #mainChart></chart>
+
+<div></div>
+
+<div></div>
+
+<div></div>
+
 <!-- <div></div>
 <chart [type]="'bar'" [data]="demoData" [options]="options" #secondChart></chart> -->
