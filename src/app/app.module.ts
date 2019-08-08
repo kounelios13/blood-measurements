@@ -18,7 +18,8 @@ import {
   MatInputModule,
   MatSnackBarModule,
   MatSelectModule,
-  MatOptionModule
+  MatOptionModule,
+  MatGridListModule
 } from "@angular/material";
 import { MeasurementComponent } from "./components/measurement/measurement.component";
 import { FormsModule } from "@angular/forms";
@@ -48,6 +49,7 @@ import { HistoryComponent } from "./components/history/history.component";
     MatListModule,
     FormsModule,
     MatSelectModule,
+    MatGridListModule,
     MatOptionModule
   ],
   providers: [],

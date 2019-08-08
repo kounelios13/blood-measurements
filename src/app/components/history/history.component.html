@@ -1,38 +1,28 @@
-<mat-form-field class="full-width">
-  <mat-label>Select year</mat-label>
-  <mat-select (selectionChange)="onYearChange($event)" [(value)]="selectedYear">
-    <mat-option *ngFor="let y of years" value={{y}}>{{y}}</mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="padded">
+  <mat-form-field class="full-width">
+    <mat-label>Select year</mat-label>
+    <mat-select (selectionChange)="onYearChange($event)" [(ngModel)]="selectedYear">
+      <mat-option *ngFor="let y of years" value={{y}}>{{y}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field class="full-width" *ngIf="selectedYear">
-  <mat-label>Select month</mat-label>
-  <mat-select (selectionChange)="onMonthChange($event)" value="{{getMonthName(selectedMonth-1)}}">
-    <mat-option *ngFor="let m of months" value={{m}}>{{getMonthName(m-1)}}</mat-option>
-  </mat-select>
-</mat-form-field>
-<!-- <mat-grid-list cols="2" gutter="10px">
-  <mat-grid-tile style="border:2px solid;padding:10px">
+  <mat-form-field class="full-width" *ngIf="selectedYear">
+    <mat-label>Select month</mat-label>
+    <mat-select (selectionChange)="onMonthChange($event)" [(ngModel)]="selectedMonth">
+      <mat-option *ngFor="let m of months" value={{m}}>{{m}}</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-  </mat-grid-tile>
-  <mat-grid-tile>
-
-  </mat-grid-tile>
-  <mat-grid-tile>3</mat-grid-tile>
-  <mat-grid-tile>4</mat-grid-tile>
-</mat-grid-list> -->
-<div class="container">
-  <div class="chart-item">
-    <chart [type]="chartType" [data]="data" [options]="options" #mainChart width="100%"></chart>
-  </div>
-  <div class="chart-item">
-    <chart width="100%" [type]="chartType" [data]="sysChartData" [options]="options" #sysChart></chart>
-  </div>
-  <div class="chart-item">
-    <chart [type]="chartType" [data]="diaChartData" [options]="options" #diaChart></chart>
-  </div>
-  <div class="chart-item">
-    <chart [type]="chartType" [data]="pulsesChartData" [options]="options" #pulsesChart></chart>
+  <div class="container">
+    <div class="chart-item half-span">
+      <chart width="100%" [type]="chartType" [data]="sysChartData" [options]="options" #sysChart></chart>
+    </div>
+    <div class="chart-item half-span">
+      <chart [type]="chartType" [data]="diaChartData" [options]="options" #diaChart></chart>
+    </div>
+    <div class="chart-item full-span">
+      <chart [type]="chartType" [data]="pulsesChartData" [options]="options" #pulsesChart></chart>
+    </div>
   </div>
 </div>
 <!-- <mat-form-field class="full-width" *ngIf="selectedMonth">
@@ -61,12 +51,3 @@
     </mat-card>
   </div>
 </ng-container> -->
-
-<div></div>
-
-<div></div>
-
-<div></div>
-
-<!-- <div></div>
-<chart [type]="'bar'" [data]="demoData" [options]="options" #secondChart></chart> -->

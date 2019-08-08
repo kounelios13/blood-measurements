@@ -32,30 +32,27 @@ export class MeasurementService {
 
   // Calculate average systolic pressure from a set
   public calculateAvgSys(data: Measurement[]) {
-    return (
-      data.reduce(
-        (accum, measurement) => accum + (measurement.systolic as number),
-        0
-      ) / data.length
+    const sum = data.reduce(
+      (accum, measurement) => accum + (measurement.systolic as number) * 1.0,
+      0
     );
+    return sum / data.length;
   }
 
   public calculateAvgDia(data: Measurement[]) {
-    return (
-      data.reduce(
-        (accum, measurement) => accum + (measurement.diastolic as number),
-        0
-      ) / data.length
+    const sum = data.reduce(
+      (accum, measurement) => accum + (measurement.diastolic as number) * 1.0,
+      0
     );
+    return sum / data.length;
   }
 
   public calculateAvgPulses(data: Measurement[]) {
-    return (
-      data.reduce(
-        (accum, measurement) => accum + (measurement.pulses as number),
-        0
-      ) / data.length
+    const sum = data.reduce(
+      (accum, measurement) => accum + (measurement.pulses as number) * 1.0,
+      0
     );
+    return sum / data.length;
   }
   private getUniqueItems(data: any[]) {
     return Array.from(new Set(data));

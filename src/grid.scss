@@ -1,10 +1,13 @@
+@import "./variables.scss";
+
+
 .container {
   display: grid;
   //   justify-items: stretch;
   //   justify-content: stretch;
   //   column-count: 2;
   //   column-gap: 7px;
-  grid-template-columns: repeat(4, 2fr);
+  grid-template-columns: repeat($column-count, $column-size);
   grid-template-rows: 80px 80px;
   //   grid-gap: 15px 10px;
   //   object-fit: fill;
@@ -16,8 +19,24 @@
   grid-row: span 2;
 }
 
+.full-span {
+  grid-column: span $column-count;
+}
+
+.half-span {
+  grid-column: span $column-count / 2;
+}
+
 @media all and (max-width :600px) {
   .chart-item {
-    grid-column: span 4;
+    grid-column: span $column-count;
+  }
+}
+
+@media all and (max-width:768px) {
+  .container {
+    column-gap: 10px;
+    row-gap: 10px;
+
   }
 }
