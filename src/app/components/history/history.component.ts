@@ -166,7 +166,7 @@ export class HistoryComponent implements OnInit {
     this.sysChartData.datasets = [sysDataSet];
     this.diaChartData.datasets = [diaDataSet];
     this.pulsesChartData.datasets = [pulseDataSet];
-    this.data.datasets[0].data = measurements;
+    // this.data.datasets[0].data = measurements;
     //this.mainChart.chart.update();
     this.sysChart.chart.update();
     this.diaChart.chart.update();
