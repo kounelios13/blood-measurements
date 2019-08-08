@@ -8,11 +8,10 @@
 
   <mat-form-field class="full-width" *ngIf="selectedYear">
     <mat-label>Select month</mat-label>
-    <mat-select (selectionChange)="onMonthChange($event)" [(ngModel)]="selectedMonth">
+    <mat-select [(ngModel)]="selectedMonth" (selectionChange)="onMonthChange($event)" #monthSelect>
       <mat-option *ngFor="let m of months" value={{m}}>{{m}}</mat-option>
     </mat-select>
   </mat-form-field>
-
   <div class="container">
     <div class="chart-item half-span">
       <chart width="100%" [type]="chartType" [data]="sysChartData" [options]="options" #sysChart></chart>

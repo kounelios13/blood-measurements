@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, AfterViewInit } from "@angular/core";
 import { Measurement } from "src/app/interfaces/measurement";
 import { ChartComponent } from "angular2-chartjs";
 import { Dataset } from "src/app/interfaces/dataset";
 import { MeasurementService } from "src/app/services/measurement.service";
-import { MatSelectChange, MatSnackBar } from "@angular/material";
+import { MatSelectChange, MatSnackBar, MatSelect } from "@angular/material";
 
 import { BreakpointObserver, Breakpoints } from "@angular/cdk/layout";
 @Component({
@@ -24,6 +24,7 @@ export class HistoryComponent implements OnInit {
   selectedMonth: number;
   selectedDay: number;
   chartType = "bar";
+
   data = {
     labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
@@ -74,35 +75,30 @@ export class HistoryComponent implements OnInit {
     }
     this.sysChartData.labels = [];
     this.measurements = this.measurementService.getMeasurements();
-    let years = this.measurements.map(m => {
-      return new Date(m.date).getFullYear();
-    });
-
     this.years = this.measurementService
       .extractYearsFromMeasurements(this.measurements)
       .map(String);
 
     let curDate = new Date();
     let year = curDate.getFullYear().toString();
-    let month = curDate.getMonth() + 1;
+    let month = (curDate.getMonth() + 1).toString();
+    console.log("shitty month", month);
     let changeEvent = {
       value: this.years.includes(year) ? year : this.years[0]
     };
     this.onYearChange(changeEvent);
     // After gathering all data for our current year let's see what month we have to diplay data for
     // const month = new Date().getMonth() + 1;
-    let monthEvent = { value: null };
-    if (this.months.includes(month.toString())) {
-      monthEvent.value = month;
-    } else {
-      monthEvent.value = this.months[0];
-    }
-    //this.onMonthChange(monthEvent);
+    // let monthEvent = {
+    //   source: this.monthSelect,
+    //   value: this.months.includes(month) ? month : this.months[0]
+    // };
+    // this.onMonthChange(monthEvent);
   }
 
   onYearChange($event) {
     console.log($event);
-    this.selectedYear = +$event.value;
+    this.selectedYear = $event.value;
     const months = this.measurements
       .filter(m => new Date(m.date).getFullYear() == +this.selectedYear)
       .map(m => new Date(m.date).getMonth() + 1);
@@ -110,8 +106,9 @@ export class HistoryComponent implements OnInit {
   }
 
   onMonthChange($event) {
-    console.log($event);
-    this.selectedMonth = +$event.value;
+    console.log({ monthEvent: $event });
+    // DO NOT force int casting
+    this.selectedMonth = $event.value;
     // Time to find data for selected month and year
     const filteredData = this.measurements.filter(record => {
       let date = new Date(record.date);
@@ -168,8 +165,8 @@ export class HistoryComponent implements OnInit {
     this.pulsesChartData.datasets = [pulseDataSet];
     // this.data.datasets[0].data = measurements;
     //this.mainChart.chart.update();
-    this.sysChart.chart.update();
     this.diaChart.chart.update();
+    this.sysChart.chart.update();
     this.pulsesChart.chart.update();
   }
 
