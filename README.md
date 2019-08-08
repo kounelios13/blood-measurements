@@ -2,6 +2,13 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.9.
 
+This projects aims to help with keeping records about your blood pressure every day.
+It provides a set of charts for visualizing your data.
+
+## Important
+
+This is a demo application.In the moment it uses localStorage so don't rely on this app for storing your medical records.Always have a backup
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
