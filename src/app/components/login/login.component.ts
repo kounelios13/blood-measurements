@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user.service";
+import { TokenService } from "src/app/services/token.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-login",
@@ -9,7 +11,11 @@ import { UserService } from "src/app/services/user.service";
 export class LoginComponent implements OnInit {
   email: string;
   password: string;
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private tokenService: TokenService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
@@ -17,16 +23,10 @@ export class LoginComponent implements OnInit {
     console.log("performing login request");
     $event.preventDefault();
     try {
-      const response: any = await this.userService.login(
-        this.email,
-        this.password
-      );
-      console.log(response);
-      const payload = {
-        accessToken: response.accessToken,
-        refreshToken: response.refreshToken
-      };
-      localStorage.setItem("tokens", JSON.stringify(payload));
+      const response = await this.userService.login(this.email, this.password);
+
+      this.tokenService.updateJwt(response.accessToken);
+      this.tokenService.updateRefreshToken(response.refreshToken);
     } catch (e) {
       console.log(e);
     }
