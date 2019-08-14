@@ -1,0 +1,16 @@
+<div class="container login-container">
+  <div class="full-span">
+    <mat-card>
+      <form (ngSubmit)="submitLogin($event)" #f="ngForm">
+        <mat-form-field class="full-width">
+          <input type="email" matInput name="email" [(ngModel)]="email" placeholder="Email" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <input type="password" matInput name="password" [(ngModel)]="password" placeholder="Enter Your password"
+            required>
+        </mat-form-field>
+        <button mat-raised-button type="submit" [disabled]="f.invalid">Login</button>
+      </form>
+    </mat-card>
+  </div>
+</div>

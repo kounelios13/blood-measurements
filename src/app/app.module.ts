@@ -24,15 +24,19 @@ import {
 import { MeasurementComponent } from "./components/measurement/measurement.component";
 import { FormsModule } from "@angular/forms";
 import { HistoryComponent } from "./components/history/history.component";
+import { LoginComponent } from "./components/login/login.component";
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     MeasurementComponent,
-    HistoryComponent
+    HistoryComponent,
+    LoginComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
