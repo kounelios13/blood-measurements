@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { MeasurementComponent } from "./components/measurement/measurement.component";
 import { HistoryComponent } from "./components/history/history.component";
 import { LoginComponent } from "./components/login/login.component";
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -15,10 +16,12 @@ const routes: Routes = [
     pathMatch: "full"
   },
   {
+    canActivate: [AuthGuard],
     path: "new",
     component: MeasurementComponent
   },
   {
+    canActivate: [AuthGuard],
     path: "history",
     component: HistoryComponent
   }

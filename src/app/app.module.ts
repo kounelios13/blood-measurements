@@ -25,7 +25,8 @@ import { MeasurementComponent } from "./components/measurement/measurement.compo
 import { FormsModule } from "@angular/forms";
 import { HistoryComponent } from "./components/history/history.component";
 import { LoginComponent } from "./components/login/login.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { Interceptor } from "./interceptor";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,13 @@ import { HttpClientModule } from "@angular/common/http";
     MatGridListModule,
     MatOptionModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

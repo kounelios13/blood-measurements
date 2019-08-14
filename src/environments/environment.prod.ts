@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   protocol: "http",
-  port: "80",
+  port: "3001",
   url: "testserver.com",
-  basePath: "blood"
+  basePath: ""
 };

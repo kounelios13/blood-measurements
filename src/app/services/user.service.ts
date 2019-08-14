@@ -14,10 +14,18 @@ export class UserService {
     const url = this.generateBaseUrl() + "/login";
     return this.http.post<LoginResponse>(url, { email, password }).toPromise();
   }
+
+  getProfile() {
+    const url = this.generateBaseUrl() + "/profile";
+    return this.http.get(url).toPromise();
+  }
   private generateBaseUrl(): string {
-    const url = `${environment.protocol}://${environment.url}:${
+    let url = `${environment.protocol}://${environment.url}:${
       environment.port
-    }/${environment.basePath}`;
+    }`;
+    if (environment.basePath) {
+      url = `${url}/${environment.basePath}`;
+    }
     return url;
   }
 }

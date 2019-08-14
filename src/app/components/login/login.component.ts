@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { UserService } from "src/app/services/user.service";
 import { TokenService } from "src/app/services/token.service";
 import { Router } from "@angular/router";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-login",
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private snackService: MatSnackBar
   ) {}
 
   ngOnInit() {}
@@ -27,8 +29,10 @@ export class LoginComponent implements OnInit {
 
       this.tokenService.updateJwt(response.accessToken);
       this.tokenService.updateRefreshToken(response.refreshToken);
+      this.router.navigate(["/new"]);
     } catch (e) {
       console.log(e);
+      this.snackService.open(e.toString(), null, { duration: 4000 });
     }
   }
 }

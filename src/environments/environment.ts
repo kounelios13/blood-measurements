@@ -5,9 +5,9 @@
 export const environment = {
   production: false,
   protocol: "http",
-  port: "80",
-  url: "localhost",
-  basePath: "blood"
+  port: "3002",
+  url: "10.0.0.10",
+  basePath: ""
 };
 
 /*
