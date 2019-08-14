@@ -7,7 +7,9 @@ It provides a set of charts for visualizing your data.
 
 ## Important
 
-This is a demo application.In the moment it uses localStorage so don't rely on this app for storing your medical records.Always have a backup
+This is a demo application. It uses the following express api in order to work
+
+[blood-measurement-api](https://github.com/kounelios13/blood-measurement-api)
 
 ## Development server
 
