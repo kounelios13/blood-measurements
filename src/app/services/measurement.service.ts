@@ -1,20 +1,37 @@
 import { Injectable } from "@angular/core";
 import { Measurement } from "../interfaces/measurement";
+import { UserService } from "./user.service";
+import { of } from "rxjs/internal/observable/of";
+import { User } from "../interfaces/user";
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root"
 })
 export class MeasurementService {
   private _dataKey = "data";
-  constructor() {}
-  getMeasurements(): Measurement[] {
-    let data = JSON.parse(localStorage.getItem(this._dataKey)) || [];
-    return data;
+  constructor(private userService: UserService, private http: HttpClient) {}
+  async getMeasurements(): Promise<Measurement[]> {
+    const profile: User = await this.userService.getProfile();
+    return profile.records;
   }
 
-  submitMeasurement(measurement: Measurement) {
-    let data = [...this.getMeasurements(), measurement];
-    localStorage.setItem(this._dataKey, JSON.stringify(data));
+  submitMeasurement(measurement: Measurement, userId: string) {
+    console.log({ userId, measurement });
+    // let data = [...this.getMeasurements(), measurement];
+    let url = `${environment.protocol}://${environment.url}:${
+      environment.port
+    }`;
+    if (environment.basePath) {
+      url = `${url}/${environment.basePath}`;
+    }
+    url = `${url}/user/${userId}/records`;
+    return this.http
+      .post(url, {
+        record: measurement
+      })
+      .toPromise();
   }
 
   extractYearsFromMeasurements(data: Measurement[]): number[] {

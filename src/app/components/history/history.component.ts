@@ -67,14 +67,14 @@ export class HistoryComponent implements OnInit {
     private snack: MatSnackBar
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // Will implement update mechanism for chart type in another branch(probably)
     let chartType = localStorage.getItem("chartType");
     if (chartType) {
       this.chartType = chartType;
     }
     this.sysChartData.labels = [];
-    this.measurements = this.measurementService.getMeasurements();
+    this.measurements = await this.measurementService.getMeasurements();
     this.years = this.measurementService
       .extractYearsFromMeasurements(this.measurements)
       .map(String);

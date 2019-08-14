@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { LoginResponse } from "../interfaces/login-response";
+import { User } from "../interfaces/user";
 
 @Injectable({
   providedIn: "root"
@@ -28,7 +29,7 @@ export class UserService {
 
   getProfile() {
     const url = this.generateBaseUrl() + "/profile";
-    return this.http.get(url).toPromise();
+    return this.http.get<User>(url).toPromise();
   }
   private generateBaseUrl(): string {
     let url = `${environment.protocol}://${environment.url}:${

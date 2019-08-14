@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   protocol: "http",
   port: "3002",
-  url: "10.0.0.10",
+  url: "localhost",
   basePath: ""
 };
 
