@@ -23,7 +23,7 @@
 <ng-template #loggedInTemplate>
   <a mat-list-item routerLink="/new">New measurement</a>
   <a mat-list-item routerLink="/history">History</a>
-  <a mat-list-item routerLink="">Log out</a>
+  <a mat-list-item (click)="logout($event)">Log out</a>
 </ng-template>
 
 <ng-template #guest>

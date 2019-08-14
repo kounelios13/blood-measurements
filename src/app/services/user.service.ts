@@ -14,7 +14,11 @@ export class UserService {
     const url = this.generateBaseUrl() + "/login";
     return this.http.post<LoginResponse>(url, { email, password }).toPromise();
   }
-
+  logoutUser() {
+    const base = this.generateBaseUrl();
+    const url = `${base}/token/reject`;
+    return this.http.post(url, {}, { responseType: "text" }).toPromise();
+  }
   register(email: string, password: string, passwordConfirm: string) {
     let url = this.generateBaseUrl() + "/register";
     return this.http
