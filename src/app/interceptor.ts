@@ -49,15 +49,15 @@ export class Interceptor implements HttpInterceptor {
           // Need to refresh the token
           // @TODO check if refresh fails.
           //If so the refresh token is expired and thus we should redirect user to login page
-          const tokens: any = await this.userService.refreshToken(
-            this.refreshToken
-          );
-          this.tokenService.updateJwt(tokens.accessToken);
-          this.tokenService.updateRefreshToken(tokens.refreshToken);
-          const headers = new HttpHeaders({
-            Authorization: tokens.accessToken,
-            "Content-Type": "application/json"
-          });
+          //   const tokens: any = await this.userService.refreshToken(
+          //     this.refreshToken
+          //   );
+          //   this.tokenService.updateJwt(tokens.accessToken);
+          //   this.tokenService.updateRefreshToken(tokens.refreshToken);
+          //   const headers = new HttpHeaders({
+          //     Authorization: tokens.accessToken,
+          //     "Content-Type": "application/json"
+          //   });
           const cloned = req.clone({
             headers,
             body: req.body

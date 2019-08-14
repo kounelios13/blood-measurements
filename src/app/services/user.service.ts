@@ -15,6 +15,13 @@ export class UserService {
     return this.http.post<LoginResponse>(url, { email, password }).toPromise();
   }
 
+  register(email: string, password: string, passwordConfirm: string) {
+    let url = this.generateBaseUrl() + "/register";
+    return this.http
+      .post(url, { email, password, passwordConfirm })
+      .toPromise();
+  }
+
   getProfile() {
     const url = this.generateBaseUrl() + "/profile";
     return this.http.get(url).toPromise();
