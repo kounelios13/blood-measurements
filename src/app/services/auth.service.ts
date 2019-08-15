@@ -9,6 +9,8 @@ export class AuthService {
   private _isLoggedIn = new BehaviorSubject(false);
   private _isLoggedIn$ = this._isLoggedIn.asObservable();
   private _jwt: String;
+  // Define which keys should be cleared upon logout
+  private appKeys = ["accessToken", "refreshToken"];
   constructor(private tokenService: TokenService) {
     this.tokenService.getJwt().subscribe(value => {
       if (!value) {
@@ -38,6 +40,6 @@ export class AuthService {
 
   logoutUser() {
     this.tokenService.updateJwt("");
-    localStorage.clear();
+    this.appKeys.forEach(key => localStorage.removeItem(key));
   }
 }
